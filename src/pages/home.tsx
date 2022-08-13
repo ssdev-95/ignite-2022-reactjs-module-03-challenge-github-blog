@@ -5,8 +5,8 @@ export function Home() {
   const theme = useMantineTheme()
 
   return (
-	  <Container style={{ backgroundColor: theme.colors['gray-900']}}>
-		  <ProfileCard />
-		</Container>
-	)
+    <Container style={{ backgroundColor: theme.colors['gray-900'] }}>
+      <ProfileCard />
+    </Container>
+  )
 }

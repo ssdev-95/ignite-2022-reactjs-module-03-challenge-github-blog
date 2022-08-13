@@ -10,10 +10,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   </React.StrictMode>,
 )
 
-if(
-  import.meta.env.DEV &&
-	window &&
-	window.innerWidth <= 870
-) {
+if (import.meta.env.DEV && window && window.innerWidth <= 870) {
   eruda.init()
 }
