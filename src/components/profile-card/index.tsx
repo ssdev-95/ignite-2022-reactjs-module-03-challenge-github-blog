@@ -23,7 +23,7 @@ export function ProfileCard() {
           </a>
         </div>
         <Text className={classes.bio}>
-          Passionate frontend devoper, wood for every obra
+          Passionate frontend developer, wood for every obra
         </Text>
         <div className={classes.footer}>
           <Text className={classes.info}>xSallus</Text>
