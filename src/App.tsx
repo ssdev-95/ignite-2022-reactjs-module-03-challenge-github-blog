@@ -10,11 +10,11 @@ export function App() {
     <MantineProvider theme={darkTheme} withNormalizeCSS withGlobalStyles>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<DefaultLayout />}>
+					<Route path="/" element={<DefaultLayout />}>
             <Route path="/" element={<Home />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+       </BrowserRouter>
     </MantineProvider>
   )
 }

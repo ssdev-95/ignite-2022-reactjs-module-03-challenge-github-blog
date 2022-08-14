@@ -7,11 +7,11 @@ export const useStyles = createStyles((theme) => ({
     maxWidth: '864px',
     backgroundColor: theme.colors['gray-700'],
     marginInline: 'auto',
+		marginTop: '-90px',
     paddingVertical: '2.5rem',
     paddingHorizontal: '3.5rem',
     display: 'flex',
     gap: '1.5rem',
-    transform: 'translateY(-90px)',
     color: theme.colors['gray-200'],
     '@media (max-width: 800px)': {
       flexDirection: 'column',
