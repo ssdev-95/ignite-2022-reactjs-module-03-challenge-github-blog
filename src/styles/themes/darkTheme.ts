@@ -1,6 +1,6 @@
-import {MantineThemeColorsOverride} from '@mantine/core'
+import { MantineThemeColorsOverride } from '@mantine/core'
 
-export const darkTheme:MantineThemeColorsOverride = {
+export const darkTheme: MantineThemeColorsOverride = {
   colors: {
     white: '#e7edf4',
     blue: '#3294f8',
@@ -13,5 +13,5 @@ export const darkTheme:MantineThemeColorsOverride = {
     'gray-700': '#0b1b2b',
     'gray-800': '#071422',
     'gray-900': '#040f1a',
-  }
+  },
 }

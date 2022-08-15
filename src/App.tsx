@@ -9,13 +9,13 @@ import { darkTheme } from './styles/themes/darkTheme'
 export function App() {
   return (
     <MantineProvider
-		  theme={{
-			  ...darkTheme,
-				fontFamily: 'Nunito, sans-serif'
-			}}
-			withNormalizeCSS
-			withGlobalStyles
-		>
+      theme={{
+        ...darkTheme,
+        fontFamily: 'Nunito, sans-serif',
+      }}
+      withNormalizeCSS
+      withGlobalStyles
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<DefaultLayout />}>

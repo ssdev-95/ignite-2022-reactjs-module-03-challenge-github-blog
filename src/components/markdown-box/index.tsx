@@ -5,9 +5,5 @@ type MarkdownBoxProps = {
 }
 
 export function MarkdownBox({ markdown }: MarkdownBoxProps) {
-  return (
-    <ReactMarkdown>
-      {markdown}
-    </ReactMarkdown>
-  )
+  return <ReactMarkdown>{markdown}</ReactMarkdown>
 }

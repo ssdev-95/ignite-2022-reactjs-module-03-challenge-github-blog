@@ -96,7 +96,7 @@ export function useFetch() {
 
       return issue
     },
-    [fetchIssueComments]
+    [fetchIssueComments],
   )
 
   const fetchUserData = useCallback(async () => {
