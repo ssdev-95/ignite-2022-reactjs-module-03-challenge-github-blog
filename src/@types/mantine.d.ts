@@ -7,6 +7,6 @@ type ExtendedCustomColors = 'primaryColorName' | 'secondaryColorName' | DefaultM
 
 declare module '@mantine/core' {
   export interface MantineThemeColorsOverride {
-    colors: Record<ExtendedCustomColors, Tuple<string, 10>>;
+    colors: Record<ExtendedCustomColors>;
   }
 }
