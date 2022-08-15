@@ -4,17 +4,17 @@ import { PostCard } from '../post-card'
 import { useStyles } from './styles'
 
 type PostListProps = {
-  issues:IssuePreview[]
+  issues: IssuePreview[]
 }
 
-export function PostList({ issues }:PostListProps) {
+export function PostList({ issues }: PostListProps) {
   const { classes } = useStyles()
 
   return (
-	  <Container className={classes.list}>
-  		{issues.map((issue) => (
-    	  <PostCard key={issue.id} issue={issue} />
-  	  ))}
-  	</Container>
-	)
+    <Container className={classes.list}>
+      {issues.map((issue) => (
+        <PostCard key={issue.id} issue={issue} />
+      ))}
+    </Container>
+  )
 }

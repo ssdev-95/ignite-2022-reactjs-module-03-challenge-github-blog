@@ -8,30 +8,27 @@ import { Loader } from '../../components/loader'
 
 export function Home() {
   const [issues, setIssues] = useState<IssuePreview[]>([])
-	const [user, setUser] = useState<User>({} as User)
+  const [user, setUser] = useState<User>({} as User)
   const { fetchIssues, fetchUserData } = useFetch()
 
   useEffect(() => {
-	  fetchUserData()
-		  .then((res) => setUser(res))
-			.catch(console.log)
-	  fetchIssues()
-		 .then((res) => setIssues(res))
-		 .catch(console.log)
-	}, [])
+    fetchUserData()
+      .then((res) => setUser(res))
+      .catch(console.log)
+    fetchIssues()
+      .then((res) => setIssues(res))
+      .catch(console.log)
+  }, [fetchIssues, fetchUserData])
 
-	if(
-	  !Object.keys(user).length ||
-		!issues.length
-	) {
-	  return <Loader />
-	}
+  if (!Object.keys(user).length || !issues.length) {
+    return <Loader />
+  }
 
   return (
     <Container>
       <ProfileCard user={user} />
-			<SearchForm issuesCount={issues.length} />
-			<PostList issues={issues} />
+      <SearchForm issuesCount={issues.length} />
+      <PostList issues={issues} />
     </Container>
   )
 }

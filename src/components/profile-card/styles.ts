@@ -7,7 +7,7 @@ export const useStyles = createStyles((theme) => ({
     maxWidth: '864px',
     backgroundColor: theme.colors['gray-700'],
     marginInline: 'auto',
-		marginTop: '-90px',
+    marginTop: '-90px',
     padding: '2rem',
     display: 'flex',
     gap: '1.5rem',
@@ -24,22 +24,22 @@ export const useStyles = createStyles((theme) => ({
   },
   infoWrapper: {
     flex: 1,
-		padding: 0
+    padding: 0,
   },
   header: {
-		width: '100%',
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-		padding: 0,
-		'& > a': {
-			textDecoration: 'none',
-			textTransform: 'uppercase',
-			display: 'flex',
-			alignItems: 'center',
-			gap: '0.25rem',
-			color: theme.colors.blue
-		},
+    padding: 0,
+    '& > a': {
+      textDecoration: 'none',
+      textTransform: 'uppercase',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.25rem',
+      color: theme.colors.blue,
+    },
     '& > h1': {
       color: theme.colors.white,
       fontSize: '1.5rem',
@@ -51,15 +51,15 @@ export const useStyles = createStyles((theme) => ({
     marginBottom: '1.8rem',
     fontSize: '1rem',
     lineHeight: 1.6,
-		'@media(max-width:869px)': {
-			textAlign: 'center'
-		}
+    '@media(max-width:869px)': {
+      textAlign: 'center',
+    },
   },
   footer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-		padding: 0,
+    padding: 0,
     gap: '2rem',
     '@media (max-width: 800px)': {
       justifyContent: 'space-between',
@@ -68,18 +68,18 @@ export const useStyles = createStyles((theme) => ({
   info: {
     fontSize: '1rem',
     lineHeight: 1.6,
-		display: 'flex',
-		alignItems: 'center',
-		gap: '0.25rem',	  
-		'& > div': {
-			display: 'flex',
-			alignItems: 'center',
-			'@media(max-width:869px)': {
-				display: 'none'
-			}
-		}
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.25rem',
+    '& > div': {
+      display: 'flex',
+      alignItems: 'center',
+      '@media(max-width:869px)': {
+        display: 'none',
+      },
+    },
   },
-	icon: {
-		height: '14px'
-	}
+  icon: {
+    height: '14px',
+  },
 }))

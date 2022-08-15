@@ -5,31 +5,25 @@ import { formatTimePassed } from '../../utils/formatter'
 import { useStyles } from './styles'
 
 type CommentProps = {
-  comment:PostComment
+  comment: PostComment
 }
 
 export function Comment({ comment }: CommentProps) {
   const { classes } = useStyles()
-	const dateFormatted = formatTimePassed(
-	  comment.createdAt
-	)
+  const dateFormatted = formatTimePassed(comment.createdAt)
 
-	return (
-	  <Card className={classes.container}>
-		  <Container className={classes.header}>
-			  <Text>
-				  {comment.author}
-				</Text>
-				<Text className={classes.time}>
-				  {dateFormatted}
-				</Text>
-			</Container>
+  return (
+    <Card className={classes.container}>
+      <Container className={classes.header}>
+        <Text>{comment.author}</Text>
+        <Text className={classes.time}>{dateFormatted}</Text>
+      </Container>
 
-			<Divider className={classes.divider} />
+      <Divider className={classes.divider} />
 
-			<Container className={classes.body}>
-			  <MarkdownBox markdown={comment.body} />
-			</Container>
-		</Card>
-	)
+      <Container className={classes.body}>
+        <MarkdownBox markdown={comment.body} />
+      </Container>
+    </Card>
+  )
 }

@@ -3,34 +3,33 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { duotoneSea } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 type MarkdownBoxProps = {
-  markdown:string
+  markdown: string
 }
 
-export function MarkdownBox({ markdown }:MarkdownBoxProps) {
+export function MarkdownBox({ markdown }: MarkdownBoxProps) {
   return (
-	  <ReactMarkdown
-		  children={markdown}
-			components={{
-			  code({node, inline, className, children, ...props}) {
-				  const match = /language-(\w+)/.exec(className || '')
-					return !inline && match ? (
-  					<SyntaxHighlighter
-						  children={String(children).replace(/\n$/, '')}
-							style={duotoneSea}
-							language={match[1]}
-							PreTag="div"
-							{...props}
-						/>
-					) : (
-					  <code
-						  className={className}
-							{...props}
-						>
-						  {children}
-						</code>
-					)
-				}
-			}}
-		/>
-	)
+    <ReactMarkdown
+      components={{
+        code({ node, inline, className, children, ...props }) {
+          const match = /language-(\w+)/.exec(className || '')
+          return !inline && match ? (
+            <SyntaxHighlighter
+              style={duotoneSea}
+              language={match[1]}
+              PreTag="div"
+              {...props}
+            >
+              {String(children).replace(/\n$/, '')}
+            </SyntaxHighlighter>
+          ) : (
+            <code className={className} {...props}>
+              {children}
+            </code>
+          )
+        },
+      }}
+    >
+      {markdown}
+    </ReactMarkdown>
+  )
 }
