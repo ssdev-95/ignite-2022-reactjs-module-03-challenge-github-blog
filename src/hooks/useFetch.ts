@@ -1,6 +1,17 @@
-import { useState } from 'react'
+import { useCallback } from 'react'
 import { api } from '../services/api'
-//lol
+
+export type User = {
+	login:string
+  //"avatar_url":string
+  //"html_url": "https:github.com/xSallus",
+	avatarURL:string
+  profileURL:string
+  name:string
+  company:string
+  bio:string
+	followers:number
+}
 
 export type IssuePreview = {
 	id:string
@@ -10,12 +21,27 @@ export type IssuePreview = {
 	body:string
 }
 
+export type FullPost = {
+	title:string
+	body:string
+	comments:PostComment[],
+	author:string,
+	createdAt:string
+	repositoryURL:string
+}
+
+export type PostComment = {
+	body:string
+	author:string
+	createdAt:string
+	id:number
+}
+
 const user = import.meta.env.VITE_GITHUB_USER
 const repo = import.meta.env.VITE_GITHUB_REPO_NAME
 
 export function useFetch() {
-	const [issues, setIssues] = useState<IssuePreview[]>([])
-	async function fetchIssues(query?:string) {
+	const fetchIssues = useCallback(async (query?:string) => {
 		let uri = ''
 
 		if(query) {
@@ -25,29 +51,66 @@ export function useFetch() {
 		}
 
 		const res = await api.get(uri)
+
 		if(query) {
-			setIssues(res.data.items.map((item:any) =>({
+			return res.data.items.map((item:any) =>({
 				id: item.node_id,
 				title: item.title,
 				issueNumber: item.number,
 				body: item.body,
 				createdAt: item.created_at
-			})))
+			})) as IssuePreview[]
 		} else {
-			setIssues(res.data.map((item:any) => ({
+			return res.data.map((item:any) => ({
 				id: item.node_id,
 				title: item.title,
 				issueNumber: item.number,
 				body: item.body,
 				createdAt: item.created_at
-			})))
+			})) as IssuePreview[]
 		}
-	}
+	},[])
 
-	async function fetchIssueDetails(issueNumber:number) {
+	const fetchIssueComments = useCallback(async (url:string) => {
+		const res = await api.get(url)
+		return res.data.map((data:Record<string,any>) => ({
+			body: data.body,
+			author: data.user.login,
+			createdAt: data.created_at,
+			id: data.id
+		})) as PostComment[]
+	},[])
+
+  const fetchIssueDetails = useCallback(async (issueNumber:number) => {
 		const res = await api.get(`repos/${user}/${repo}/issues/${issueNumber}`)
-		console.log(res.data)
-	}
 
-	return { issues, fetchIssues, fetchIssueDetails }
+		const comments = await fetchIssueComments(res.data.comments_url)
+
+		const issue = {
+			title:res.data.title,
+			body: res.data.body,
+			comments,
+			author: res.data.user.login,
+			createdAt: res.data.created_at,
+			repositoryURL: res.data.html_url.split('/issues/')[0]
+		} as FullPost
+
+		return issue
+	},[])
+
+	const fetchUserData = useCallback(async () => {
+		const res = await api.get(`users/${user}`)
+
+		return {
+			name: res.data.name,
+			login: res.data.login,
+			avatarURL: res.data.avatar_url,
+			profileURL: res.data.html_url,
+			company: res.data.company,
+			bio: res.data.bio,
+			followers: res.data.followers
+		}
+	},[])
+
+	return { fetchIssues, fetchIssueDetails, fetchIssueComments, fetchUserData }
 }

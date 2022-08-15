@@ -1,34 +1,19 @@
-import { Card, Container, Text, Title } from '@mantine/core'
-import {  useFetch } from '../../hooks/useFetch'
-import { formatTimePassed } from '../../utils/formatter'
+import { Container } from '@mantine/core'
+import { IssuePreview } from '../../hooks/useFetch'
+import { PostCard } from '../post-card'
 import { useStyles } from './styles'
 
-export function PostList() {
+type PostListProps = {
+  issues:IssuePreview[]
+}
+
+export function PostList({ issues }:PostListProps) {
   const { classes } = useStyles()
-	const { issues } = useFetch()
 
   return (
 	  <Container className={classes.list}>
   		{issues.map((issue) => (
-    	  <Card
-				  key={issue.id}
-					className={classes.cardContainer}
-				>
-      	  <Container className={classes.cardHeader}>
-					  <Title className={classes.title}>
-						  {issue.title}
-						</Title>
-						<Text className={classes.time}>
-						  {formatTimePassed(issue.createdAt)}
-						</Text>
-					</Container>
-
-					<Container className={classes.bodyWrapper}>
-					  <Text className={classes.bodyText}>
-						  {issue.body}
-						</Text>
-					</Container>
-				</Card>
+    	  <PostCard key={issue.id} issue={issue} />
   	  ))}
   	</Container>
 	)

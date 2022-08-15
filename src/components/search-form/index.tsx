@@ -10,9 +10,13 @@ import {
 import { useFetch } from '../../hooks/useFetch'
 import { useStyles } from './styles'
 
-export function SearchForm() {
+type SearchFormProps = {
+ issuesCount: number
+}
+
+export function SearchForm({ issuesCount }:SearchFormProps) {
   const { classes } = useStyles()
-  const { fetchIssues, issues }  = useFetch()
+  const { fetchIssues }  = useFetch()
   const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<IssueFormInput>({
 	  resolver: zodResolver(issuesFormSchema)
 	})
@@ -29,10 +33,10 @@ export function SearchForm() {
 		>
 		  <Container className={classes.header}>
 			  <Text>Posts</Text>
-			  <Text>{`${issues.length} posts`}</Text>
+			  <Text>{`${issuesCount} posts`}</Text>
 			</Container>
 		  {isSubmitting ? (
-			  <Loader />
+			  <Loader size="md" />
 			) : (
     	  <input
 				  className={classes.input}

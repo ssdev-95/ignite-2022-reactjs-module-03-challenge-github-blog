@@ -1,4 +1,5 @@
 import { createStyles } from '@mantine/core'
+import Background from '../../assets/header-bg.svg'
 
 export const useStyles = createStyles({
   header: {
@@ -8,7 +9,7 @@ export const useStyles = createStyles({
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    backgroundImage: 'url(../../assets/header-bg.svg)',
+    backgroundImage: `url(${Background})`,
     backgroundPositionX: '50%',
     backgroundSize: 'cover',
     paddingHorizontal: 0,
